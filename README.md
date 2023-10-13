@@ -1,0 +1,2 @@
+# learn_design_patterns
+デザインパターンをPythonで実装しながら学ぶリポジトリ
