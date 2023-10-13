@@ -98,6 +98,29 @@ class BookShelf(Aggregate):
         return BookShelfIterator(BookShelf)
 
 
+class BookShelfIterator(Iterator):
+    """_summary_
+
+    Args:
+        Iterator (_type_): _description_
+    """
+
+    def __init__(self, book_shelf: BookShelf):
+        self.__book_shelf: BookShelf = book_shelf
+        self.__index: int = 0
+
+    def has_next(self, book_shelf) -> bool:
+        if self.__index < book_shelf.get_length():
+            return True
+        else:
+            return False
+
+    def next(self, book_slelf, index) -> object:
+        book: Book = book_slelf.getBookAt(index)
+        index += 1
+        return book
+
+
 def main():
     """main関数
     """
