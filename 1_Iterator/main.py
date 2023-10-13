@@ -15,6 +15,18 @@ class IAggregate(metaclass=abc.ABCmeta):
         """
 
 
+class IIterator(metaclass=abc.ABCmeta):
+    @abc.abstractmethod
+    def has_next(self) -> bool:
+        """_summary_
+        """
+
+    @abc.abstractmethod
+    def next(self) -> object:
+        """_summary_
+        """
+
+
 def main():
     """main関数
     """
