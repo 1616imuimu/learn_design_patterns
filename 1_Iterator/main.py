@@ -39,6 +39,22 @@ class Aggregate(Iterator, metaclass=abc.ABCmeta):
         raise NotImplementedError()
 
 
+class Book():
+    """_summary_
+    """
+
+    def __init__(self, name):
+        self.__name: str = name
+
+    def get_name(self) -> str:
+        """_summary_
+
+        Returns:
+            str: _description_
+        """
+        return self.__name
+
+
 def main():
     """main関数
     """
