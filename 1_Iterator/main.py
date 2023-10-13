@@ -1,9 +1,10 @@
 """Iteratorパターンのサンプルプログラム
 """
 import abc
+from typing import cast
 
 
-class Iterator(metaclass=abc.ABCmeta):
+class Iterator(metaclass=abc.ABCMeta):
     """_summary_
 
     Args:
@@ -26,7 +27,7 @@ class Iterator(metaclass=abc.ABCmeta):
         raise NotImplementedError()
 
 
-class Aggregate(Iterator, metaclass=abc.ABCmeta):
+class Aggregate(Iterator, metaclass=abc.ABCMeta):
     """_summary_
 
     Args:
