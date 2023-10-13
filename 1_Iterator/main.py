@@ -55,6 +55,49 @@ class Book():
         return self.__name
 
 
+class BookShelf(Aggregate):
+    """_summary_
+
+    Args:
+        Aggregate (_type_): _description_
+    """
+
+    def __init__(self):
+        self.__books: Book = []
+        self.__last: int = 0
+
+    def get_book_at(self, index: int) -> Book:
+        """_summary_
+
+        Args:
+            index (int): _description_
+
+        Returns:
+            Book: _description_
+        """
+        return self.__books[index]
+
+    def append_book(self, book: Book):
+        """_summary_
+
+        Args:
+            book (Book): _description_
+        """
+        self.__books[self.__last] = book
+        self.__last += 1
+
+    def get_length(self) -> int:
+        """_summary_
+
+        Returns:
+            int: _description_
+        """
+        return self.__last
+
+    def iterator(self) -> Iterator:
+        return BookShelfIterator(BookShelf)
+
+
 def main():
     """main関数
     """
