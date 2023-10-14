@@ -44,6 +44,21 @@ class Print(metaclass=abc.ABCMeta):
         raise NotImplementedError()
 
 
+class PrintrBanner(Banner, Print):
+    """_summary_
+
+    Args:
+        Banner (_type_): _description_
+        Print (_type_): _description_
+    """
+
+    def print_weak(self):
+        super().show_with_paren()
+
+    def print_strong(self):
+        super().show_with_aster()
+
+
 def main():
     """main関数
     """
