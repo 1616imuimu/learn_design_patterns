@@ -27,7 +27,7 @@ class Iterator(metaclass=abc.ABCMeta):
         raise NotImplementedError()
 
 
-class Aggregate(Iterator, metaclass=abc.ABCMeta):
+class Aggregate(metaclass=abc.ABCMeta):
     """_summary_
 
     Args:
@@ -44,7 +44,7 @@ class Book():
     """_summary_
     """
 
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         self.__name: str = name
 
     def get_name(self) -> str:
@@ -64,7 +64,7 @@ class BookShelf(Aggregate):
     """
 
     def __init__(self):
-        self.__books: Book = []
+        self.__books: list[Book] = []
         self.__last: int = 0
 
     def get_book_at(self, index: int) -> Book:
@@ -78,13 +78,13 @@ class BookShelf(Aggregate):
         """
         return self.__books[index]
 
-    def append_book(self, book: Book):
+    def append_book(self, book: Book) -> None:
         """_summary_
 
         Args:
             book (Book): _description_
         """
-        self.__books[self.__last] = book
+        self.__books.append(book)
         self.__last += 1
 
     def get_length(self) -> int:
@@ -96,7 +96,7 @@ class BookShelf(Aggregate):
         return self.__last
 
     def iterator(self) -> Iterator:
-        return BookShelfIterator(BookShelf)
+        return BookShelfIterator(self)
 
 
 class BookShelfIterator(Iterator):
@@ -110,21 +110,31 @@ class BookShelfIterator(Iterator):
         self.__book_shelf: BookShelf = book_shelf
         self.__index: int = 0
 
-    def has_next(self, book_shelf) -> bool:
-        if self.__index < book_shelf.get_length():
+    def has_next(self) -> bool:
+        if self.__index < self.__book_shelf.get_length():
             return True
         else:
             return False
 
-    def next(self, book_slelf, index) -> object:
-        book: Book = book_slelf.getBookAt(index)
-        index += 1
+    def next(self) -> object:
+        book: Book = self.__book_shelf.get_book_at(self.__index)
+        self.__index += 1
         return book
 
 
 def main():
     """main関数
     """
+    book_shelf: BookShelf = BookShelf()
+    book_shelf.append_book(Book("Around the World in 80 Days"))
+    book_shelf.append_book(Book("Bible"))
+    book_shelf.append_book(Book("Cinderella"))
+    book_shelf.append_book(Book("Daddy-Long-Legs"))
+
+    it: Iterator = book_shelf.iterator()
+    while it.has_next():
+        book: Book = cast(Book, it.next())
+        print(book.get_name())
 
 
 if __name__ == "__main__":
