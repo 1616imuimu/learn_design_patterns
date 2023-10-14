@@ -62,6 +62,9 @@ class PrintrBanner(Banner, Print):
 def main():
     """main関数
     """
+    p: Print = PrintrBanner("Hello")
+    p.print_weak()
+    p.print_strong()
 
 
 if __name__ == "__main__":
