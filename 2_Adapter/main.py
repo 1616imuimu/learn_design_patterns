@@ -1,6 +1,5 @@
 """Adapterパターンのサンプルプログラム
 """
-import abc
 
 
 class Banner():
@@ -21,42 +20,34 @@ class Banner():
         print(f"*{self.__string}*")
 
 
-class Print(metaclass=abc.ABCMeta):
+class Print():
     """_summary_
-
-    Args:
-        metaclass (_type_, optional): _description_. Defaults to abc.ABCMeta.
-
-    Raises:
-        NotImplementedError: _description_
-        NotImplementedError: _description_
     """
-    @abc.abstractmethod
+
     def print_weak(self) -> None:
         """_summary_
         """
-        raise NotImplementedError()
 
-    @abc.abstractmethod
     def print_strong(self) -> None:
         """_summary_
         """
-        raise NotImplementedError()
 
 
-class PrintrBanner(Banner, Print):
+class PrintrBanner(Print):
     """_summary_
 
     Args:
-        Banner (_type_): _description_
         Print (_type_): _description_
     """
 
+    def __init__(self, string: str) -> None:
+        self.__banner: Banner = Banner(string)
+
     def print_weak(self):
-        super().show_with_paren()
+        self.__banner.show_with_paren()
 
     def print_strong(self):
-        super().show_with_aster()
+        self.__banner.show_with_aster()
 
 
 def main():
