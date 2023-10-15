@@ -43,10 +43,10 @@ class PrintrBanner(Print):
     def __init__(self, string: str) -> None:
         self.__banner: Banner = Banner(string)
 
-    def print_weak(self):
+    def print_weak(self) -> None:
         self.__banner.show_with_paren()
 
-    def print_strong(self):
+    def print_strong(self) -> None:
         self.__banner.show_with_aster()
 
 
